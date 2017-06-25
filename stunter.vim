@@ -45,5 +45,7 @@ fun! Stunter(sid)
   return funcref('s:StunterTest')
 endfun
 
+echomsg 'Loaded Stunter ' . g:stunter_version
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
