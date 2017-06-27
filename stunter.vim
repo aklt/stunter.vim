@@ -17,9 +17,9 @@ fun! Stunter(sid) " 'MethodName, args, expected[, expression]'
   let s:count = 0
   let s:sid = a:sid
   fun! s:StunterTest(...) abort " func, args...
-    if a:0 != 3
-      echoerr 'Usage :call StunterTest(subject, args, expected)'
-      finish
+    if !(a:0 == 3 || a:0 == 4)
+      echoerr 'Usage :call StunterTest(subject, args, expected[, expression])'
+      return
     endif
     let l:funcName = a:000[0]
     let l:callName = l:funcName
