@@ -13,7 +13,7 @@ set cpo&vim
 
 scriptencoding utf-8
 
-fun! Stunter(sid)
+fun! Stunter(sid) " 'MethodName, args, expected[, expression]'
   let s:count = 0
   let s:sid = a:sid
   fun! s:StunterTest(...) abort " func, args...
@@ -40,6 +40,12 @@ fun! Stunter(sid)
             \ ' == ' . sexp
     else
       echoerr 'Error: expected ' . sres . ' to be ' . sexp
+    endif
+    if len(a:000) == 4
+      let eres = eval(a:000[3])
+      if !eres
+        echomsg 'Expected evaluation of ' . a:000[3] . ' to be truthy'
+      endif
     endif
   endfun
   return funcref('s:StunterTest')
